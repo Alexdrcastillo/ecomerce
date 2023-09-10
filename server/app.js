@@ -5,7 +5,7 @@ import cors from 'cors'
 
 import routes from "./routes/routes.js";
 
-const app = express();
+const app = express();  
 
 // Middlewares
 app.use(morgan("dev"));
