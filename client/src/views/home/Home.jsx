@@ -1,33 +1,38 @@
-  import React from 'react'
-  import { useEffect, useState } from 'react'
-  import axios from "axios"
-  import CardProducts from '../../components/cardProducts/CardProducts'
-  import { useDispatch, useSelector } from 'react-redux'
-  import { setProduct } from '../../redux/reducers/Products/productsSlice'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import axios from "axios"
+import CardProducts from '../../components/cardProducts/CardProducts'
+import { useDispatch } from 'react-redux'
+import { setProduct } from '../../redux/reducers/Products/productsSlice'
 import NavBar from '../../components/navBar/Navbar'
+import FilterPrice from '../filters/filterPrice'
 
-  const Home = () => {
+const Home = () => {
+  const dispatch = useDispatch();
+  const { products, filter } = useSelector(state => state.product)
 
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        const getProducts = async () => {
-          const products = await axios.get("http://localhost:4000/")
-          dispatch(setProduct(products.data)) }
+  useEffect(() => {
+    const getProducts = async () => {
+      const products = await axios.get("http://localhost:4000/")
+      dispatch(setProduct(products.data))
+    }
 
-        getProducts()
-    }, [])
+    getProducts()
+  }, [])
 
+  const filteredProducts = products.filter(product => product.price >= filter.min && product.price <= filter.max)
 
-    return (
-      <div>  
-              <NavBar />
-
-        <div style={{marginLeft: "8vh"}}>
-          <CardProducts />
-        </div>
+  return (
+    <div>  
+      <NavBar />
+      <div style={{marginLeft: "8vh"}}>
+        <CardProducts products={filteredProducts} />
       </div>
-    )
-  }
+      <div style={{marginTop: "-67rem"}}>
+      <FilterPrice />
+      </div>
+    </div>
+  )
+}
 
-  export default Home
+export default Home
