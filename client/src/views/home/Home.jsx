@@ -25,11 +25,11 @@ const Home = () => {
   return (
     <div>  
       <NavBar />
+      <div style={{marginTop: "10rem", width: "15rem", position: "fixed", marginLeft: "3rem"}}>
+      <FilterPrice />
+      </div>
       <div style={{marginLeft: "8vh"}}>
         <CardProducts products={filteredProducts} />
-      </div>
-      <div style={{marginTop: "-67rem"}}>
-      <FilterPrice />
       </div>
     </div>
   )

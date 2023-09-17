@@ -13,9 +13,9 @@ const CardProducts = () => {
   console.log(products)
 
   return (
-    <div style={{width: "100rem"}}>
+    <div style={{width: "90rem", marginLeft: "200px"}}>
   
-   <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap", marginLeft: "16rem"}}>
+   <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap", marginLeft: "3rem"}}>
        {
         products.map(product => {
                return(

@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { setProduct } from '../../redux/reducers/Products/productsSlice';
 
 const FilterPrice = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const FilterPrice = () => {
     
     // Mueve la lógica de filtrado aquí
     const filteredProducts = state.filter(product => product.price <= price);
-    console.log(filteredProducts);
+    dispatch(setProduct(filteredProducts))
   };
 
   return (
@@ -41,7 +42,6 @@ const FilterPrice = () => {
             <MenuItem value={200}>200$</MenuItem>
             <MenuItem value={400}>400$</MenuItem>
             <MenuItem value={500}>500$</MenuItem>
-
           </Select>
         </FormControl>
       </Box>
