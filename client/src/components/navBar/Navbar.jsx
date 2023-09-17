@@ -37,6 +37,9 @@
       if (event.target.value == "Buy") {
          navigate("/sell")
       }
+      if (event.target.value == "Products") {
+        navigate("/")
+      }
     };
 
     const handleCloseUserMenu = () => {

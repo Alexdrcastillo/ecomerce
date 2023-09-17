@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/navBar/Navbar';
+import axios from "axios"
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -25,11 +26,17 @@ const Form = () => {
         if (validateForm()) {
             console.log(formData);
             // Aquí puedes manejar el envío de tu formulario
+            const envio = async () => {
+               const envio = await axios.post(`http://localhost:4000/create`, formData)     
+            }
+
+            envio()
+
         }
     };
 
     const handleChange = (event) => {
-        setFormData({
+        setFormData({   
             ...formData,
             [event.target.name]: event.target.value
         });
@@ -38,15 +45,14 @@ const Form = () => {
     return (
         <div>
             <NavBar />
-          
             <form onSubmit={handleSubmit} style={{marginTop: "400px"}}>
-                <input type="text" name="title" onChange={handleChange} />
+                <input type="text" name="title" onChange={handleChange} placeholder='title'/>
                 {errors.title && <p>{errors.title}</p>}
-                <input type="text" name="description" onChange={handleChange} />
+                <input type="text" name="description" onChange={handleChange} placeholder='description'/>
                 {errors.description && <p>{errors.description}</p>}
-                <input type="text" name="price" onChange={handleChange} />
+                <input type="text" name="price" onChange={handleChange}  placeholder='price'/>
                 {errors.price && <p>{errors.price}</p>}
-                <input type="text" name="image" onChange={handleChange} />
+                <input type="text" name="image" onChange={handleChange} placeholder='image'/>
                 {errors.image && <p>{errors.image}</p>}
                 <button type="submit">Enviar</button>
             </form>
